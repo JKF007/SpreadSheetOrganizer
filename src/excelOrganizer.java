@@ -11,7 +11,6 @@ public class excelOrganizer {
 	
 	
 	public static void main(String args[]) throws IOException{
-		
 		ArrayList<String> filteredMainArray  = new ArrayList<String>();
 		
 		excelOrganizer.rowsFilter mainFilter = new excelOrganizer.rowsFilter();
@@ -20,36 +19,44 @@ public class excelOrganizer {
 					
 		filteredMainArray = mainFilter.filterFile(uneditedFile);
 		
-		rowsFilter.printResult(filteredMainArray, "filteredCoh2Dps.csv");		
+		mainFilter.printResult(filteredMainArray, "editedMainList.csv");
+		
+		
 		
 		ArrayList<String> subFilter = new ArrayList<String>();
-		
-		
-		subFilter.add("USAInf.txt");
-		subFilter.add("wehrInf.txt");
-		subFilter.add("SovInf.txt");
-		subFilter.add("okwInf.txt");
 		subFilter.add("britInf.txt");
-		
-		subFilter.add("USAVeh.txt");		
-		subFilter.add("wehrVeh.txt");
-		subFilter.add("SovVeh.txt");
-		subFilter.add("okwVeh.txt");
 		subFilter.add("britVeh.txt");
-				
-		ArrayList<String> sortedArray  = new ArrayList<String>();
+		subFilter.add("USAInf.txt");
+		subFilter.add("USAVeh.txt");
+		subFilter.add("SovInf.txt");
+		subFilter.add("SovVeh.txt");
+		subFilter.add("wehrInf.txt");
+		subFilter.add("wehrVeh.txt");
+		subFilter.add("okwInf.txt");
+		subFilter.add("okwVeh.txt");
+		
+		ArrayList<String> subList = new ArrayList<String>();
+		subList.add("britInf.csv");
+		subList.add("britVeh.csv");
+		subList.add("USAInf.csv");
+		subList.add("USAVeh.csv");
+		subList.add("SovInf.csv");
+		subList.add("SovVeh.csv");
+		subList.add("wehrInf.csv");
+		subList.add("wehrVeh.csv");
+		subList.add("okwInf.csv");
+		subList.add("okwVeh.csv");
+		
+		ArrayList<String> filteredSubArray  = new ArrayList<String>();
 		
 		for (int x = 0 ; x < subFilter.size() ; x++){
 			
 			excelOrganizer.rowsFilter tempFilter = new excelOrganizer.rowsFilter( subFilter.get(x) );
-			
-			sortedArray.add( subFilter.get(x) );
-			
-			sortedArray.addAll( tempFilter.filterArray(filteredMainArray) ) ;						
+			filteredSubArray = tempFilter.filterArray(filteredMainArray);
+			tempFilter.printResult(filteredSubArray, subList.get(x));			
 		}
 		
-		rowsFilter.printResult(sortedArray, "sortedCoh2Dps.csv");
-				
+		
 	}//end of main	
 	
 	static class rowsFilter{
@@ -83,7 +90,7 @@ public class excelOrganizer {
 			return relevantWeapons.contains(weaponName);
 		}
 		
-		public static void printResult(ArrayList<String> resultArray, String fileName)throws IOException{
+		public void printResult(ArrayList<String> resultArray, String fileName)throws IOException{
 			
 			Path destination = Paths.get(fileName);
 			
@@ -124,7 +131,7 @@ public class excelOrganizer {
 			
 			return filteredArray; 
 			
-		}//end of method filterArray
+		}//end of filterFile
 		
 	}//end of class  rowsFilter	
 	

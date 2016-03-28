@@ -41,10 +41,3 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-*.csv
-*.txt
-bin/excelOrganizer$rowsFilter.class
-.project
-*.prefs
-*.classpath
-bin/excelOrganizer.class
