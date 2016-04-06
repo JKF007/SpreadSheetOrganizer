@@ -20,7 +20,7 @@ public class excelOrganizer {
 					
 		filteredMainArray = mainFilter.filterFile(uneditedFile);
 		
-		rowsFilter.printResult(filteredMainArray, "filteredCoh2Dps.csv");		
+		excelOrganizer.printResult(filteredMainArray, "filteredCoh2Dps.csv");		
 		
 		ArrayList<String> subFilter = new ArrayList<String>();
 		
@@ -48,9 +48,17 @@ public class excelOrganizer {
 			sortedArray.addAll( tempFilter.filterArray(filteredMainArray) ) ;						
 		}
 		
-		rowsFilter.printResult(sortedArray, "sortedCoh2Dps.csv");
+		excelOrganizer.printResult(sortedArray, "sortedCoh2Dps.csv");
 				
 	}//end of main	
+	
+	public static void printResult(ArrayList<String> resultArray, String fileName)throws IOException{
+		
+		Path destination = Paths.get(fileName);
+		
+		Files.write(destination, resultArray, Charset.forName("UTF-8") );		
+		
+	}
 	
 	static class rowsFilter{
 			
@@ -81,15 +89,7 @@ public class excelOrganizer {
 		public boolean contains(String weaponName ){
 			
 			return relevantWeapons.contains(weaponName);
-		}
-		
-		public static void printResult(ArrayList<String> resultArray, String fileName)throws IOException{
-			
-			Path destination = Paths.get(fileName);
-			
-			Files.write(destination, resultArray, Charset.forName("UTF-8") );		
-			
-		}
+		}//end of method contains		
 		
 		public ArrayList<String> filterFile(BufferedReader inputList)throws IOException{
 			
@@ -126,7 +126,7 @@ public class excelOrganizer {
 			
 		}//end of method filterArray
 		
-	}//end of class  rowsFilter	
+	}//end of class rowsFilter	
 	
 }//end of class excelOrganizer
 
