@@ -98,7 +98,10 @@ public class excelOrganizer {
 			while (inputList.ready()){
 				String row = inputList.readLine();	
 				String [] tokens = row.split(",");
-				String weaponName = tokens[0];
+				String weaponName= "dummy";
+				
+				if (tokens.length > 0)
+				weaponName = tokens[0];
 					
 				if ( this.contains(weaponName) ){
 					filteredList.add(row);					
